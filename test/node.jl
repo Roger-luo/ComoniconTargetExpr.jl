@@ -33,6 +33,7 @@ eval(emit_expr(cmd))
     @test command_main(["cmd1", "foo"]) == 1
     @test command_main(["cmd1", "foo", "-h"]) == 0
     @test command_main(["cmd1", "foo", "-V"]) == 0
+    @test command_main(String[]) == 1
 end
 
 end

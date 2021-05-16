@@ -47,6 +47,8 @@ eval(emit_expr(cmd))
 
     @test command_main(["3", "2"]) == 0
     @test test_args[] == Any[3, 2]
+
+    @test command_main(["cmd", "--", "3", "2"]) == 1
 end
 
 end

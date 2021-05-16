@@ -37,6 +37,8 @@ eval(emit_expr(cmd))
     @test test_kwargs[] == [:option_a=>3, :option_b=>1.2, :flag_a=>true, :flag_b=>true]
     @test command_main(["-o3", "--option-b", "1.2", "-f", "--flag-b"]) == 0
     @test test_kwargs[] == [:option_a=>3, :option_b=>1.2, :flag_a=>true, :flag_b=>true]
+    @test command_main(["--option-a", "--option-b", "1.2", "-f", "--flag-b"]) == 1
+    @test command_main(["-o", "--option-b", "1.2", "-f", "--flag-b"]) == 1
 end
 
 end

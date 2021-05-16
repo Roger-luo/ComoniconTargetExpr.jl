@@ -12,7 +12,9 @@ function emit_error(cmd, msg::String; color::Bool=true)
     msg = "Error: $msg, use -h or --help to check more detailed help info"
     return quote
         printstyled($msg; color = :red, bold = true)
+        println()
         print($(help_str(cmd; color = color)))
+        println()
         return 1
     end
 end
@@ -31,7 +33,9 @@ function emit_error(cmd, msg::Expr; color::Bool=true)
     push!(ex.args, ", use -h or --help to check more detailed help info")
     return quote
         printstyled($msg; color = :red, bold = true)
+        println()
         print($(help_str(cmd; color = color)))
+        println()
         return 1
     end
 end
@@ -257,7 +261,7 @@ function emit_short_flag(cmd::LeafCommand, token::Symbol, sym::Symbol, key::Symb
             end
         end
     end
-    ifelse.otherwise = emit_error(cmd, :("cannot find $($token)"))
+    ifelse.otherwise = emit_error(cmd, :("cannot find flag: $($token)"))
     return codegen_ast(ifelse)
 end
 
