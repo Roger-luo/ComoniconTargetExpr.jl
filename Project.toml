@@ -3,6 +3,11 @@ uuid = "d6dfd36b-42f3-4a9f-a1cb-6f1a052fed42"
 authors = ["Roger-Luo <rogerluo.rl18@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+ComoniconOptions = "a25bc8ac-9d24-42b2-8edd-3d267ec19fc5"
+ComoniconTypes = "d0eb39ce-029e-40d1-add6-e32b3165f6a3"
+ExproniconLite = "55351af7-c7e9-48d6-89ff-24e801d99491"
+
 [compat]
 julia = "1.6.1"
 

@@ -1,5 +1,9 @@
 module ComoniconTargetExpr
 
-# Write your package code here.
+using ExproniconLite
+using ComoniconTypes
+using ComoniconOptions
+
+include("emit.jl")
 
 end
