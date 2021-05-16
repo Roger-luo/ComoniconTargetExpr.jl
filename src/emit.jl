@@ -36,6 +36,11 @@ function emit_error(cmd, msg::Expr; color::Bool=true)
     end
 end
 
+"""
+    emit_expr(cmd::CLIEntry[, ptr::Int=1])
+
+Emit `Expr` from a `CLIEntry`.
+"""
 function emit_expr(cmd::CLIEntry, ptr::Int=1)
     jlfn = JLFunction(;
         name=:command_main,
@@ -94,8 +99,9 @@ function emit_dash_body(cmd::LeafCommand, idx::Symbol, ptr::Int=1)
     @gensym token token_ptr args kwargs
 
     quote # parse option/flag
+        $kwargs = []
         $token_ptr = $ptr
-        while $token_ptr ≤ $idx
+        while $token_ptr ≤ $idx-1
             $token = ARGS[$token_ptr]
             if startswith($token, "-")
                 $(emit_kwarg(cmd, token, kwargs, token_ptr))
