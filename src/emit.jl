@@ -236,7 +236,7 @@ function emit_kwarg(cmd::LeafCommand, token::Symbol, kwargs::Symbol, token_ptr)
 
     # short option
     ifelse.otherwise = quote
-        $key = lstrip(split($token, '=')[1], '-')
+        $key = $token[2:2]
         $(emit_short_option(cmd, token, sym, key, value, token_ptr))
     end
 

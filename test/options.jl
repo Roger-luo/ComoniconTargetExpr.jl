@@ -5,11 +5,11 @@ using ComoniconTargetExpr
 using ComoniconTargetExpr: emit_expr, emit_body, emit_norm_body, emit_dash_body
 using Test
 
-function foo(;option_a::Int=2, option_b::Float64=2.0, flag_a::Bool=false, flag_b::Bool=false)
-    @test option_a == 3
-    @test option_b == 1.2
-    @test flag_a
-    @test flag_b
+const test_args = Ref{Vector{Any}}()
+const test_kwargs = Ref{Vector{Any}}()
+
+function foo(;kwargs...)
+    test_kwargs[] = [kwargs...]
 end
 
 cmd = CLIEntry(;
@@ -31,9 +31,12 @@ cmd = CLIEntry(;
 eval(emit_expr(cmd))
 
 @testset "test leaf options" begin
-    command_main(["--option-a=3", "--option-b", "1.2", "-f", "--flag-b"])
-    command_main(["-o=3", "--option-b", "1.2", "-f", "--flag-b"])
+    @test command_main(["--option-a=3", "--option-b", "1.2", "-f", "--flag-b"]) == 0
+    @test test_kwargs[] == [:option_a=>3, :option_b=>1.2, :flag_a=>true, :flag_b=>true]
+    @test command_main(["-o=3", "--option-b", "1.2", "-f", "--flag-b"]) == 0
+    @test test_kwargs[] == [:option_a=>3, :option_b=>1.2, :flag_a=>true, :flag_b=>true]
+    @test command_main(["-o3", "--option-b", "1.2", "-f", "--flag-b"]) == 0
+    @test test_kwargs[] == [:option_a=>3, :option_b=>1.2, :flag_a=>true, :flag_b=>true]
 end
 
 end
-
