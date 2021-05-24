@@ -6,11 +6,11 @@ DocMeta.setdocmeta!(ComoniconTargetExpr, :DocTestSetup, :(using ComoniconTargetE
 makedocs(;
     modules=[ComoniconTargetExpr],
     authors="Roger-Luo <rogerluo.rl18@gmail.com> and contributors",
-    repo="https://github.com/Roger-luo/ComoniconTargetExpr.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/comonicon/ComoniconTargetExpr.jl/blob/{commit}{path}#{line}",
     sitename="ComoniconTargetExpr.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://Roger-luo.github.io/ComoniconTargetExpr.jl",
+        canonical="https://comonicon.github.io/ComoniconTargetExpr.jl",
         assets=String[],
     ),
     pages=[
@@ -19,5 +19,5 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/Roger-luo/ComoniconTargetExpr.jl",
+    repo="github.com/comonicon/ComoniconTargetExpr.jl",
 )
