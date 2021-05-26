@@ -79,7 +79,11 @@ function emit_body(cmd::NodeCommand, ptr::Int=1)
     end
     jl.otherwise = emit_error(cmd, :("Error: unknown command $(ARGS[$ptr])"))
     return quote
-        $(emit_help(cmd, ptr))
+        if length(ARGS) == $ptr && (ARGS[$(ptr)] == "-h" || ARGS[$(ptr)] == "--help")
+            print($(help_str(cmd)))
+            return 0
+        end
+
         $nargs_assert
         $(codegen_ast(jl))
     end
