@@ -41,11 +41,11 @@ function emit_error(cmd, msg::Expr; color::Bool=true)
 end
 
 """
-    emit_expr(cmd::CLIEntry[, ptr::Int=1])
+    emit_expr(cmd::Entry[, ptr::Int=1])
 
-Emit `Expr` from a `CLIEntry`.
+Emit `Expr` from a `Entry`.
 """
-function emit_expr(cmd::CLIEntry, ptr::Int=1)
+function emit_expr(cmd::Entry, ptr::Int=1)
     jlfn = JLFunction(;
         name=:command_main,
         args=[Expr(:kw, :(ARGS::Vector{String}), :ARGS)],
@@ -57,7 +57,7 @@ function emit_expr(cmd::CLIEntry, ptr::Int=1)
     return codegen_ast(jlfn)
 end
 
-function emit_scan_version(cmd::CLIEntry)
+function emit_scan_version(cmd::Entry)
     quote
         if "-V" in ARGS || "--help" in ARGS
             print($(cmd.version))

@@ -9,7 +9,7 @@ function foo(a, b=2)
     @test a == 3
 end
 
-cmd = CLIEntry(;
+cmd = Entry(;
     version=v"1.2.0",
     root=LeafCommand(;
         fn=foo,

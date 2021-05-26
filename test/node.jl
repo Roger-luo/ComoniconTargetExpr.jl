@@ -9,7 +9,7 @@ function called()
     @test true
 end
 
-cmd = CLIEntry(;
+cmd = Entry(;
     version=v"1.2.0",
     root=NodeCommand(;
         name="node",

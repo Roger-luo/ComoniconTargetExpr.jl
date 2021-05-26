@@ -11,7 +11,7 @@ function foo(a, b=2, c...)
     test_args[] = [a, b, c...]
 end
 
-cmd = CLIEntry(;
+cmd = Entry(;
     version=v"1.1.0",
     root=LeafCommand(;
         fn=foo,

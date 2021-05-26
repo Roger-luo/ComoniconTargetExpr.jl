@@ -12,7 +12,7 @@ function foo(;kwargs...)
     test_kwargs[] = [kwargs...]
 end
 
-cmd = CLIEntry(;
+cmd = Entry(;
     version=v"1.1.0",
     root=LeafCommand(;
         fn=foo,
