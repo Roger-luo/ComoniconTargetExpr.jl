@@ -1,7 +1,7 @@
 name = "ComoniconTargetExpr"
 uuid = "d6dfd36b-42f3-4a9f-a1cb-6f1a052fed42"
 authors = ["Roger-Luo <rogerluo.rl18@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 ComoniconOptions = "a25bc8ac-9d24-42b2-8edd-3d267ec19fc5"
