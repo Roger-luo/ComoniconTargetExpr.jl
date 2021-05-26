@@ -59,7 +59,7 @@ end
 
 function emit_scan_version(cmd::Entry)
     quote
-        if "-V" in ARGS || "--help" in ARGS
+        if "-V" in ARGS || "--version" in ARGS
             print($(cmd.version))
             return 0
         end
@@ -79,7 +79,7 @@ function emit_body(cmd::NodeCommand, ptr::Int=1)
     end
     jl.otherwise = emit_error(cmd, :("Error: unknown command $(ARGS[$ptr])"))
     return quote
-        $(emit_help(cmd, ptr+1))
+        $(emit_help(cmd, ptr))
         $nargs_assert
         $(codegen_ast(jl))
     end
@@ -88,7 +88,7 @@ end
 function emit_body(cmd::LeafCommand, ptr::Int=1)
     @gensym idx
     quote
-        $(emit_help(cmd, ptr+1))
+        $(emit_help(cmd, ptr))
 
         $idx = findnext(isequal("--"), ARGS, $ptr)
         if isnothing($idx) # no dash
