@@ -28,3 +28,45 @@ eval(emit_expr(cmd))
 end
 
 end
+
+module Issue141
+
+using ComoniconTypes
+using ComoniconTargetExpr
+using ComoniconTargetExpr: emit_expr, emit_body, emit_norm_body, emit_dash_body
+using Test
+
+function main(xs...)
+    @test xs == ("1", "2", "3")
+end
+
+cmd = Entry(
+    LeafCommand(
+        main,
+        "main",
+        Argument[],
+        0,
+        Argument("xs",
+            Any,
+            true,
+            false,
+            nothing,
+            Description(nothing, nothing),
+            LineNumberNode(0),
+        ),
+        Dict{String, Flag}(),
+        Dict{String, Option}(),
+        Description("", ""),
+        LineNumberNode(0),
+    ),
+    nothing,
+    LineNumberNode(0),
+)
+
+eval(emit_expr(cmd))
+
+@testset "issue/#141" begin
+    Issue141.command_main(["1", "2", "3"])
+end
+
+end

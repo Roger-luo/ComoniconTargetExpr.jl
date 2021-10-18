@@ -203,7 +203,7 @@ function emit_leaf_call(cmd::LeafCommand, args::Symbol, kwargs::Symbol)
         type = cmd.vararg.type
         if type === Any || type === String || type === AbstractString
             ifelse.otherwise = quote
-                $varargs = $args[$(length(cmd.args)):end]
+                $varargs = $args[$(length(cmd.args))+1:end]
                 $call
                 return 0
             end
